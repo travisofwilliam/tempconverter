@@ -56,7 +56,7 @@ const Index = () => {
         <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css" />
       </Head>
       <div className="jumbotron">
-        <h3 className="display-4">Temperature Converter</h3>
+        <h3 className="display-4" style={{ objectFit: 'contain' }}>Temperature Converter</h3>
         <form onSubmit={handleSubmit}>
           <p>Convert:</p>
           <input
