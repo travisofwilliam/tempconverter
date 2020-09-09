@@ -7,6 +7,7 @@ const Index = () => {
   const [unit, setUnit] = useState('')
   const [conversionUnit, setConversionUnit] = useState('')
   const [result, setResult] = useState(undefined)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleInputChange = (e) => {
     setInput(e.target.value)
@@ -23,31 +24,47 @@ const Index = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log(input, unit, conversionUnit)
-    if (unit === 'kelvin') {
-      if (conversionUnit === 'farenheit') {
-        var resultKF = ((input - 273) * (9 / 5) + 35)
-        setResult(resultKF.toFixed(0))
-      } else if (conversionUnit === 'celsius') {
-        var resultKC = input - 273.15
-        setResult(resultKC.toFixed(0))
-      }
-    } else if (unit === 'farenheit') {
-      if (conversionUnit === 'celsius') {
-        var resultFC = ((input - 32) * 5 / 9)
-        setResult(resultFC.toFixed(0))
-      } else if (conversionUnit === 'kelvin') {
-        var resultFK = ((input - 32) * 5 / 9) + 5
-        setResult(resultFK.toFixed(0))
-      }
-    } else if (unit === 'celsius') {
-      if (conversionUnit === 'farenheit') {
-        var resultCF = ((input * 9 / 5) + 32)
-        setResult(resultCF.toFixed(0))
-      } else if (conversionUnit === 'kelvin') {
-        var resultCK = input + 273.15
-        setResult(resultCK.toFixed(0))
+    if (isNaN(input) || input === '') {
+      setErrorMessage('Please enter a tempterature to convert. Temperature must only contain integers.')
+    } else if (unit === '') {
+      setErrorMessage('Please select a valid unit of measurement')
+    } else if (conversionUnit === '') {
+      setErrorMessage('Please select a valid conversion unit')
+    } else {
+      if (unit === 'kelvin') {
+        if (conversionUnit === 'farenheit') {
+          var resultKF = ((input - 273) * (9 / 5) + 35)
+          setResult(resultKF.toFixed(0))
+        } else if (conversionUnit === 'celsius') {
+          var resultKC = input - 273.15
+          setResult(resultKC.toFixed(0))
+        } else if (conversionUnit === 'kelvin') {
+          setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
+        }
+      } else if (unit === 'farenheit') {
+        if (conversionUnit === 'celsius') {
+          var resultFC = ((input - 32) * 5 / 9)
+          setResult(resultFC.toFixed(0))
+        } else if (conversionUnit === 'kelvin') {
+          var resultFK = ((input - 32) * 5 / 9) + 5
+          setResult(resultFK.toFixed(0))
+        } else if (conversionUnit === 'farenheit') {
+          setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
+        }
+      } else if (unit === 'celsius') {
+        if (conversionUnit === 'farenheit') {
+          var resultCF = ((input * 9 / 5) + 32)
+          setResult(resultCF.toFixed(0))
+        } else if (conversionUnit === 'kelvin') {
+          var resultCK = input + 273.15
+          setResult(resultCK.toFixed(0))
+        } else if (conversionUnit === 'celsius') {
+          setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
+        }
       }
     }
+
+    setInput('')
   }
 
   return (
@@ -85,7 +102,7 @@ const Index = () => {
           <button className='mb-3' type='submit'>Convert Temperature</button>
         </form>
         {
-          !isNaN(result) ? <h3>{result + '°'}</h3> : ''
+          !isNaN(result) ? <h3>{result + '°'}</h3> : errorMessage
         }
       </div>
 
