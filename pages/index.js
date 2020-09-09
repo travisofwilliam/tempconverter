@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log(input, unit, conversionUnit)
+
     if (isNaN(input) || input === '') {
       setErrorMessage('Please enter a tempterature to convert. Temperature must only contain integers.')
     } else if (unit === '') {
@@ -63,7 +63,6 @@ const Index = () => {
         }
       }
     }
-
     setInput('')
   }
 
@@ -99,7 +98,7 @@ const Index = () => {
             <option value="kelvin">Kelvin</option>
           </select>
           <br />
-          <button className='mb-3' type='submit'>Convert Temperature</button>
+          <button className='btn btn-info mb-3' type='submit'>Convert Temperature</button>
         </form>
         {
           !isNaN(result) ? <h3>{result + '°'}</h3> : errorMessage
