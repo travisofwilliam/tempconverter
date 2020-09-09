@@ -83,7 +83,7 @@ const Index = () => {
             placeholder='Enter Temperature'
           />
           <br />
-          <select className='mb-3' value={unit} onChange={handleUnitChange}>
+          <select className='mb-3 btn btn-info' value={unit} onChange={handleUnitChange}>
             <option value="">--Select Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
@@ -91,14 +91,14 @@ const Index = () => {
           </select>
           <br />
           <p>To: </p>
-          <select className='mb-3' value={conversionUnit} onChange={handleConversionUnitChange}>
+          <select className='mb-3 btn btn-info' value={conversionUnit} onChange={handleConversionUnitChange}>
             <option value="">--Select a Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
             <option value="kelvin">Kelvin</option>
           </select>
           <br />
-          <button className='btn btn-info mb-3' type='submit'>Convert Temperature</button>
+          <button className='btn btn-primary mb-3' type='submit'>Convert Temperature</button>
         </form>
         {
           !isNaN(result) ? <h3>{result + '°'}</h3> : errorMessage
