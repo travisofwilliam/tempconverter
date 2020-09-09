@@ -55,42 +55,6 @@ const Index = () => {
       <Head>
         <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css" />
       </Head>
-
-      {/* <div className="card mt-3" style={{ width: '18rem' }}>
-        <div className="card-body">
-          <h4 className="card-title">Temperature Converter</h4>
-          <form onSubmit={handleSubmit}>
-            Convert: {''}
-            <input
-              className='mb-3'
-              value={input}
-              onChange={handleInputChange}
-              type="text"
-              placeholder='Enter Temperature'
-            />
-            <select value={unit} onChange={handleUnitChange}>
-              <option value="">--Select Unit of Measure--</option>
-              <option value="farenheit">Farenheit</option>
-              <option value="celsius">Celsius</option>
-              <option value="kelvin">Kelvin</option>
-            </select>
-            <br />
-            <p>To: </p>
-            <select className='mb-3' value={conversionUnit} onChange={handleConversionUnitChange}>
-              <option value="">--Select a Unit of Measure--</option>
-              <option value="farenheit">Farenheit</option>
-              <option value="celsius">Celsius</option>
-              <option value="kelvin">Kelvin</option>
-            </select>
-            <br />
-            <button className='mb-3' type='submit'>Convert Temperature</button>
-          </form>
-          {
-            !isNaN(result) ? result + '°' : ''
-          }
-        </div>
-      </div> */}
-
       <div className="jumbotron">
         <h3 className="display-4">Temperature Converter</h3>
         <form onSubmit={handleSubmit}>
@@ -121,7 +85,7 @@ const Index = () => {
           <button className='mb-3' type='submit'>Convert Temperature</button>
         </form>
         {
-          !isNaN(result) ? result + '°' : ''
+          !isNaN(result) ? <h3>{result + '°'}</h3> : ''
         }
       </div>
 
