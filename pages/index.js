@@ -56,8 +56,8 @@ const Index = () => {
           var resultCF = ((input * 9 / 5) + 32)
           setResult(resultCF.toFixed(0))
         } else if (conversionUnit === 'kelvin') {
-          var resultCK = input + 273.15
-          setResult(resultCK.toFixed(0))
+          var resultCK = input + 273
+          setResult(resultCK.toFixed(2))
         } else if (conversionUnit === 'celsius') {
           setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
         }
