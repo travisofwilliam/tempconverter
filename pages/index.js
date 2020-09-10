@@ -67,7 +67,6 @@ const Index = () => {
         }
       }
     }
-    // setInput('')
   }
 
   return (
@@ -87,7 +86,7 @@ const Index = () => {
             placeholder='Enter Temperature'
           />
           <br />
-          <select className={`mb-3 dropdown p-2 ${unitBtn}`} value={unit} onChange={handleUnitChange}>
+          <select className={`mb-3 dropdown p-2 ${unitBtn}`} style={{ color: 'black' }} value={unit} onChange={handleUnitChange}>
             <option value="">--Select Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
@@ -95,7 +94,7 @@ const Index = () => {
           </select>
           <br />
           <p>To: </p>
-          <select className={`mb-3 dropdown p-2 ${conversionBtn}`} value={conversionUnit} onChange={handleConversionUnitChange}>
+          <select className={`mb-3 dropdown p-2 ${conversionBtn}`} style={{ color: 'black' }} value={conversionUnit} onChange={handleConversionUnitChange}>
             <option value="">--Select a Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
