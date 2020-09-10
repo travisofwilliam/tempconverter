@@ -8,6 +8,8 @@ const Index = () => {
   const [conversionUnit, setConversionUnit] = useState('')
   const [result, setResult] = useState(undefined)
   const [errorMessage, setErrorMessage] = useState('')
+  const [unitBtn, setUnitBtn] = useState('btn-info')
+  const [conversionBtn, setConversionBtn] = useState('btn-info')
 
   const handleInputChange = (e) => {
     setInput(e.target.value)
@@ -15,10 +17,12 @@ const Index = () => {
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value)
+    setUnitBtn('btn-success')
   }
 
   const handleConversionUnitChange = (e) => {
     setConversionUnit(e.target.value)
+    setConversionBtn('btn-success')
   }
 
   const handleSubmit = (e) => {
@@ -33,37 +37,37 @@ const Index = () => {
     } else {
       if (unit === 'kelvin') {
         if (conversionUnit === 'farenheit') {
-          var resultKF = ((input - 273) * (9 / 5) + 35)
+          var resultKF = ((parseInt(input) - 273) * (9 / 5) + 35)
           setResult(resultKF.toFixed(0))
         } else if (conversionUnit === 'celsius') {
-          var resultKC = input - 273.15
+          var resultKC = parseInt(input) - 273.15
           setResult(resultKC.toFixed(0))
         } else if (conversionUnit === 'kelvin') {
           setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
         }
       } else if (unit === 'farenheit') {
         if (conversionUnit === 'celsius') {
-          var resultFC = ((input - 32) * 5 / 9)
+          var resultFC = ((parseInt(input) - 32) * 5 / 9)
           setResult(resultFC.toFixed(0))
         } else if (conversionUnit === 'kelvin') {
-          var resultFK = ((input - 32) * 5 / 9) + 5
+          var resultFK = ((parseInt(input) - 32) * 5 / 9) + 5
           setResult(resultFK.toFixed(0))
         } else if (conversionUnit === 'farenheit') {
           setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
         }
       } else if (unit === 'celsius') {
         if (conversionUnit === 'farenheit') {
-          var resultCF = ((input * 9 / 5) + 32)
+          var resultCF = ((parseInt(input) * 9 / 5) + 32)
           setResult(resultCF.toFixed(0))
         } else if (conversionUnit === 'kelvin') {
-          var resultCK = input + 273.15
+          var resultCK = (parseInt(input) + 273.15)
           setResult(resultCK.toFixed(2))
         } else if (conversionUnit === 'celsius') {
           setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
         }
       }
     }
-    setInput('')
+    // setInput('')
   }
 
   return (
@@ -83,7 +87,7 @@ const Index = () => {
             placeholder='Enter Temperature'
           />
           <br />
-          <select className='mb-3 btn btn-info' value={unit} onChange={handleUnitChange}>
+          <select className={`mb-3 btn ${unitBtn}`} value={unit} onChange={handleUnitChange}>
             <option value="">--Select Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
@@ -91,7 +95,7 @@ const Index = () => {
           </select>
           <br />
           <p>To: </p>
-          <select className='mb-3 btn btn-info' value={conversionUnit} onChange={handleConversionUnitChange}>
+          <select className={`mb-3 btn ${conversionBtn}`} value={conversionUnit} onChange={handleConversionUnitChange}>
             <option value="">--Select a Unit of Measure--</option>
             <option value="farenheit">Farenheit</option>
             <option value="celsius">Celsius</option>
@@ -104,7 +108,6 @@ const Index = () => {
           !isNaN(result) ? <h3>{result + '°'}</h3> : errorMessage
         }
       </div>
-
 
     </div>
   )
