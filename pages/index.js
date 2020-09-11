@@ -10,19 +10,23 @@ const Index = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [unitBtn, setUnitBtn] = useState('btn-info')
   const [conversionBtn, setConversionBtn] = useState('btn-info')
+  const [clicked, setClicked] = useState(false)
 
   const handleInputChange = (e) => {
     setInput(e.target.value)
+    setClicked(false)
   }
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value)
     setUnitBtn('btn-success')
+    setClicked(false)
   }
 
   const handleConversionUnitChange = (e) => {
     setConversionUnit(e.target.value)
     setConversionBtn('btn-success')
+    setClicked(false)
   }
 
   const handleSubmit = (e) => {
@@ -51,7 +55,7 @@ const Index = () => {
           setResult(resultFC.toFixed(0))
         } else if (conversionUnit === 'kelvin') {
           var resultFK = ((parseInt(input) - 32) * 5 / 9) + 5
-          setResult(resultFK.toFixed(0))
+          setResult(resultFK.toFixed(2))
         } else if (conversionUnit === 'farenheit') {
           setErrorMessage('Warning: Original temperature unit and conversion unit can not be the same!')
         }
@@ -67,6 +71,8 @@ const Index = () => {
         }
       }
     }
+    setInput('')
+    setClicked(true)
   }
 
   return (
@@ -121,7 +127,12 @@ const Index = () => {
 
         </form>
         {
-          !isNaN(result) ? <h3>{result + '°'}</h3> : errorMessage
+          !isNaN(result) && clicked ?
+            <h3>{
+              conversionUnit === 'kelvin' ? result
+                : result + '°'
+            }</h3>
+            : errorMessage
         }
       </div>
 
